@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>育將點餐管理</title>
+    <style>
+        .error{
+           color : red; 
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <h1 class="mt-5 text-center">育將點餐管理</h1>
+        
+        <!-- 表單返回頁，記得在表單加「 target='returnWin' 」 -->
+        <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='20200211_home_ok.html'}"></iframe>
+
+        <form  target='returnWin' role="form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfJEBXFVgoZ02rWVEYmCzDJweZOQxHkqupORzn9W95qz7M1Hw/formResponse" method="post" id="myForm" >
+          <div class="row">         
+            <!--桌號-->
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label>桌號<span class="text-danger">*</span></label>
+                <select name="entry.1791270540" id="1791270540" class="form-control" size="1">
+                  <option value="">請選擇桌號</option>
+                  <option value="1號桌">1號桌</option>
+                  <option value="2號桌">2號桌</option>
+                  <option value="3號桌">3號桌</option>
+                  <option value="4號桌">4號桌</option>
+                  <option value="5號桌">5號桌</option>
+                  <option value="6號桌">6號桌</option>
+                </select>
+              </div>
+            </div>            
+            <!--合計-->              
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label>合計</label>
+                <input type="number" class="form-control" name="entry.860442414" id="total" value=""  readonly>
+              </div>
+            </div>          
+          </div>
+            <div class="row">
+              <!--雞腿飯-90元-->              
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label><span class="title">雞腿飯-90元</span><span class="text-danger">(請填數量)</span></label>
+                  <input type="number" class="form-control amount" name="entry.1433105832" id="1433105832" value="0" min=0 onchange="calTotal();">
+                </div>
+              </div>          
+                <!--雞排飯-80元-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label><span class="title">雞排飯-80元</span><span class="text-danger">(請填數量)</span></label>
+                      <input type="number" class="form-control amount" name="entry.1740738551" id="1740738551" value="0" min=0 onchange="calTotal();">
+                    </div>
+                </div>          
+                <!--排骨飯-70元-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label><span class="title">排骨飯-70元</span><span class="text-danger">(請填數量)</span></label>
+                      <input type="number" class="form-control amount" name="entry.798909488" id="798909488" value="0" min=0 onchange="calTotal();">
+                    </div>
+                </div>          
+                <!--招牌飯-60元-->              
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label><span class="title">招牌飯-60元</span><span class="text-danger">(請填數量)</span></label>
+                      <input type="number" class="form-control amount" name="entry.154819054" id="154819054" value="0" min=0 onchange="calTotal();">
+                    </div>
+                </div> 
+
+            </div> 
+            
+            <div class="row">
+                <div class="col-sm-12">  
+                    <!-- 備註 -->
+                    <div class="form-group">
+                        <label class="control-label">備註</label>
+                        <textarea class="form-control" rows="3" id="1733441737" name="entry.1733441737"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center pb-3">
+                <button type="submit" class="btn btn-primary">送出</button>
+            </div>
+        </form>
+
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <!-- 表單驗證 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <!-- 調用驗證方法 -->
+    <script>
+      $(function(){
+        $("#myForm").validate({
+          submitHandler: function(form) {
+              form.submit();
+          },
+          rules: {
+            'entry.1791270540' : {//桌號
+                required: true
+            },
+            'entry.1433105832' : {//雞腿飯
+                digits:true ,
+                min: 0
+            },
+            'entry.1740738551' : {//雞排飯
+                digits:true ,
+                min: 0
+            },
+            'entry.798909488' : {//排骨飯
+                digits:true ,
+                min: 0
+            },
+            'entry.154819054' : {//招牌飯
+                digits:true ,
+                min: 0
+            },
+            'entry.860442414' : {//合計
+                required: true
+            }
+          },
+          messages: {
+            'entry.1791270540' : {
+                required: "請輸入桌號"
+            },
+            'entry.1433105832' : {
+                digits:"請填正確數量" ,
+                min: "請填正確數量"
+            },
+            'entry.1740738551' : {//雞排飯
+                digits:"請填正確數量" ,
+                min: "請填正確數量"
+            },
+            'entry.798909488' : {//排骨飯
+                digits:"請填正確數量" ,
+                min: "請填正確數量"
+            },
+            'entry.154819054' : {//招牌飯
+                digits:"請填正確數量" ,
+                min: "請填正確數量"
+            },
+            'entry.860442414' : {//合計
+                required: "您尚未點餐"
+            }
+          }
+        });
+
+
+      });
+      function calTotal(){
+        var total=0;
+        var amounts = document.getElementsByClassName("amount");
+        var titles = document.getElementsByClassName("title");
+        for(var i=0; i < amounts.length; i++){
+          var amount = parseInt(amounts[i].value);
+          var title = titles[i].innerText.split("-");
+          var price = parseInt(title[1]);
+          total += parseInt(amounts[i].value) * price;          
+        }
+        if(total === 0){
+          document.getElementById("total").value = "";  
+        }else{          
+          document.getElementById("total").value = total;
+        }          
+      }
+    </script>
+  </body>
+</html>
