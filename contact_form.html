@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>聯絡我們</title>
+    <style>
+        .error{
+           color : red; 
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5 text-center">聯絡我們</h1>
+      
+      <!-- 表單返回頁，記得在表單加「 target='returnWin' 」 -->
+      <iframe name="returnWin" style="display: none;" onload="this.onload=function(){window.location='contact_ok.html'}"></iframe>
+
+      <form  target='returnWin' role="form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSclvcWg05JiaaG0F2CVBBjCmu7fwRiaXcp7M9NidwE5aTbVaw/formResponse" method="post" id="mG61Hd" >
+          <div class="row">
+            <!--email-->              
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label><span class="title">email</span><span class="text-danger">*</span></label>
+                <input type="email" class="form-control" name="emailAddress" id="email" value="">
+              </div>
+            </div>
+            <!--姓名-->              
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label><span class="title">姓名</span><span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="entry.1487049719" id="name" value="">
+              </div>
+            </div>
+            <div class="col-sm-12">  
+              <!-- 聯絡事項 -->
+              <div class="form-group">
+                  <label class="control-label">聯絡事項</label>
+                  <textarea class="form-control" rows="5" id="contact" name="entry.1333847814"></textarea>
+              </div>
+            </div>
+          </div> 
+        
+          <div class="text-center pb-3">
+            <input type="hidden" name="fvv" value="1">
+            <input type="hidden" name="draftResponse" value="[null,null,'-6130933045463515229']">
+            <input type="hidden" name="pageHistory" value="0">
+            <button type="submit" class="btn btn-primary">送出</button>
+          </div>
+      </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <!-- 表單驗證 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <!-- 調用驗證方法 -->
+    <script>
+      $(function(){
+        $("#mG61Hd").validate({
+          submitHandler: function(form) {
+              form.submit();
+          },
+          rules: {
+            'entry.1487049719' : {//姓名
+              required: true
+            },
+            'entry.1333847814' : {//聯絡事項
+              required:true 
+            },
+            'emailAddress' : {//email
+              required:true,
+              email:true 
+            }
+          },
+          messages: {
+            'entry.1487049719' : {
+              required: "必填"
+            },
+            'entry.1333847814' : {
+              required: "必填"
+            },
+            'emailAddress' : {
+              required: "必填",
+              email: "請填正確email"
+            }
+          }
+        });
+
+
+      });
+    </script>
+  </body>
+</html>
